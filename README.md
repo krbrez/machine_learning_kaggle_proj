@@ -1,6 +1,6 @@
 # Final Project CS-4342
 
-This is the README Documentation of the final project for group X
+This is the README Documentation of the final project for group 17
 
 ## Installation
 

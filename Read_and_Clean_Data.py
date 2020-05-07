@@ -4,9 +4,10 @@ import os
 import cv2
 import pandas as pd
 from tqdm import tqdm
+import pickle
 
 # We read the csv Data in using pandas(this is the fastest way I could think to do this)
-df = pd.read_csv("train.csv") 
+df = pd.read_csv("./humpback-whale-identification/train.csv")
 
 # We convert the pandas datafram to a numpy array
 nparry = df.to_numpy()
@@ -15,39 +16,36 @@ print(nparry.shape)
 # We then seperate the whale image IDs and the labels into two seperate arrays
 whale_image_IDs = nparry[:,0]
 labels = nparry[:,1]
+print(labels)
+print(labels.shape)
 
-"""
-# We need the labels to be in the correct form, so we do some witchcraft on them
-yhat = np.zeros((labels.shape[0], np.unique(labels).shape[0]))
-indexing_array = {}
+# Convert labels to numbers and create a legend to save that matches up the number to the label
+legend = {}
+yhat = np.zeros(labels.shape[0])
 index = 0
-true_index = 0
+new_assignment = 0
 for x in tqdm(labels):
-	arr = np.zeros(np.unique(labels).shape[0])
-	#third value is 1
-	if x in indexing_array:
-		#get the index of x
-		target_index = indexing_array.get(x)
+	if x in legend.keys():
+		yhat[index] = legend[x]
 	else:
-		indexing_array.update({x: index})
-		target_index = index
-		index += 1
-	true_index +=1
+		legend[x] = new_assignment
+		yhat[index] = new_assignment
+		new_assignment += 1
+	index += 1
 
-	arr[target_index] = 1
-	#print(arr)
-	yhat[true_index - 1] = arr
 
+print(yhat)
 print(yhat.shape)
 print(labels.shape)
 
 np.save('y', yhat)
-"""
+pickle.dump(legend, open("legend.p", "wb"))
+
 y_load = np.load("y.npy")
 print(y_load.shape)
 
 # For the time being we will convert the image to grey scale, and make them 200x200
-"""
+
 WIDTH = 100
 HEIGHT = 100
 DATADIR = "./humpback-whale-identification"
@@ -68,7 +66,7 @@ for img in tqdm(os.listdir(path)):
 		print("We couldn't find that image")
 #print(X)
 np.save('X', X)
-"""
+
 X = np.load("X.npy")
 print(X.shape)
 

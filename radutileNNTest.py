@@ -2,6 +2,11 @@ import numpy as np
 from sklearn.neural_network import MLPClassifier
 
 
+def mAP5 (y, yhat, U, k, n):
+    pass
+
+
+
 # import X and y
 X = np.load("./humpback-whale-identification/X.npy")
 y = np.load("./humpback-whale-identification/y.npy")
@@ -9,7 +14,9 @@ y = np.load("./humpback-whale-identification/y.npy")
 # Reshape X to be flatter
 X_flat = X.reshape(25361, 10000)  # note, adjust later code based on which dimension is the examples.
 
-indices = np.arange(len(y))
+numEx = len(y)
+
+indices = np.arange(numEx)
 
 sets = np.split(indices, 3)
 
@@ -27,3 +34,6 @@ classifier.fit(Xtrain, ytrain)
 yhat = classifier.predict(Xvalid)
 
 # check accuracy of yhat here:
+truths = np.sum(yhat == yvalid)
+acc = truths / numEx
+print("validation accuracy was: " + str(acc))

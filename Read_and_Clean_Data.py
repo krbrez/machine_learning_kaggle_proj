@@ -4,7 +4,7 @@ import os
 import cv2
 import pandas as pd
 from tqdm import tqdm
-import pickle
+import json
 
 # We read the csv Data in using pandas(this is the fastest way I could think to do this)
 df = pd.read_csv("./humpback-whale-identification/train.csv")
@@ -39,7 +39,8 @@ print(yhat.shape)
 print(labels.shape)
 
 np.save('y', yhat)
-pickle.dump(legend, open("legend.p", "wb"))
+with open("legend.json", "w") as js:
+	json.dump(legend, js)
 
 y_load = np.load("y.npy")
 print(y_load.shape)

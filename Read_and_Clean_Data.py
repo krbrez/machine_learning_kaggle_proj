@@ -46,8 +46,8 @@ print(y_load.shape)
 
 # For the time being we will convert the image to grey scale, and make them 200x200
 
-WIDTH = 100
-HEIGHT = 100
+WIDTH = 28
+HEIGHT = 28
 DATADIR = "./humpback-whale-identification"
 category = "train"
 X = np.zeros(shape=(25361, WIDTH, HEIGHT))

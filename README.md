@@ -4,7 +4,7 @@ This is the README Documentation of the final project for group 17
 
 ## Installation
 
-Once we get this far we an fill in some of this information
+You can downlaod the data from: https://www.kaggle.com/c/humpback-whale-identification/overview
 
 ```bash
 pip install numpy

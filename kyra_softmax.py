@@ -14,9 +14,9 @@ X_sta = scale.fit_transform(X_flat)
 
 # Create and train the machine
 listOModels = []
-for i in tqdm(range(int(y.size/512))):
+for i in tqdm(range(int(y.size/2048))):
     listOModels.append(linear_model.LogisticRegression(solver='lbfgs', multi_class='multinomial'))
-    listOModels[i].fit(X_sta[i*512:(i+1)*512],y[i*512:(i+1)*512])
+    listOModels[i].fit(X_sta[i*2048:(i+1)*2048],y[i*2048:(i+1)*2048])
 
 # Test on the training set
 listOYhats = []

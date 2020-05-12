@@ -8,15 +8,12 @@ You can downlaod the data from: https://www.kaggle.com/c/humpback-whale-identifi
 
 ```bash
 pip install numpy
+pip install cv2
+pip install tqdm
+pip install scikit-learn
+pip install pandas
+pip install keras
 ```
-
-## Other Useful code snippets
-
-```python
-import numpy 
-
-```
-
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

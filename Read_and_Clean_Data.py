@@ -45,7 +45,7 @@ with open("legend.json", "w") as js:
 y_load = np.load("y.npy")
 print(y_load.shape)
 
-# For the time being we will convert the image to grey scale, and make them 200x200
+# For the time being we will convert the image to grey scale, change width and height as needed to test different image sizes
 
 WIDTH = 28
 HEIGHT = 28
